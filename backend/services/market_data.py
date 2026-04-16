@@ -1,18 +1,23 @@
 import yfinance as yf
-import pandas as pd
-
-ticker = input()
-dat = yf.Ticker(ticker)
-
-data = dat.history(period='1y')
-
-closing_prices = data['Close']
 
 
-prices = []
+def get_price_history(ticker, period):
 
-for dates, price in closing_prices.items():
-    # print(dates, price)
-    prices.append({"date": str(dates.date()), "price": price})
+    dat = yf.Ticker(ticker)
 
-print(prices)
+    data = dat.history(period=period)
+
+    if data.empty:
+        return None
+    else:
+        closing_prices = data['Close']
+
+        prices = []
+
+        for dates, price in closing_prices.items():
+            prices.append({"date": str(dates.date()), "price": price})
+
+        return prices
+
+
+# print(get_price_history(input(), input()))
