@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import PriceChart from "./PriceChart";
 
 function TickerInput() {
   const [ticker, setTicker] = useState("");
@@ -18,7 +19,7 @@ function TickerInput() {
   }
 
   return (
-    <div>
+    <div style={{ width: "800px" }}>
       <input
         type="text"
         value={ticker}
@@ -26,6 +27,7 @@ function TickerInput() {
         placeholder="Enter ticker (e.g. AAPL)"
       />
       <button onClick={handleSearch}>Search ticker</button>
+      <PriceChart prices={prices} />
     </div>
   );
 }
