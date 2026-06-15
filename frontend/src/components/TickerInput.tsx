@@ -5,6 +5,7 @@ import PriceChart from "./PriceChart";
 function TickerInput() {
   const [ticker, setTicker] = useState("");
   const [prices, setPrices] = useState([]);
+  const [metrics, setMetrics] = useState(null);
 
   function handleSearch() {
     axios
@@ -14,7 +15,8 @@ function TickerInput() {
         },
       })
       .then((response) => {
-        setPrices(response.data);
+        setPrices(response.data.prices);
+        setMetrics(response.data.metrics);
       });
   }
 
