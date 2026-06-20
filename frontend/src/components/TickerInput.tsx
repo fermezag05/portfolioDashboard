@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import PriceChart from "./PriceChart";
+import MetricsCard from "./MetricsCard";
 
 function TickerInput() {
   const [ticker, setTicker] = useState("");
@@ -30,6 +31,7 @@ function TickerInput() {
       />
       <button onClick={handleSearch}>Search ticker</button>
       <PriceChart prices={prices} />
+      {metrics && <MetricsCard metrics={metrics} />}
     </div>
   );
 }
