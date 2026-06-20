@@ -14,7 +14,7 @@ def calculate_annualized_volatility(prices: list):
     prices_arr = np.array([p["price"] for p in prices])
     log_returns = np.diff(np.log(prices_arr))
     standard_deviation = np.std(log_returns)
-    return standard_deviation * np.sqrt(252)
+    return (standard_deviation * np.sqrt(252))
 
 
 def calculate_sharpe(prices: list):
@@ -27,9 +27,9 @@ def calculate_sharpe(prices: list):
 
 def calculate_metrics(prices: list):
     return {
-        "total_return": calculate_total_return(prices),
-        "volatility": calculate_annualized_volatility(prices),
-        "sharpe": calculate_sharpe(prices)
+        "total_return": round(calculate_total_return(prices), 2),
+        "volatility": round(calculate_annualized_volatility(prices)*100, 2),
+        "sharpe": round(calculate_sharpe(prices), 2)
     }
 
 # Test for calculate_total_revenue
