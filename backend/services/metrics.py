@@ -20,7 +20,7 @@ def calculate_annualized_volatility(prices: list):
 def calculate_sharpe(prices: list):
     prices_arr = np.array([p["price"] for p in prices])
     log_returns = np.diff(np.log(prices_arr))
-    expected_annualized_return = np.mean(log_returns) * 252
+    expected_annualized_return = np.mean(log_returns) * len(prices)
     standard_deviation = np.std(log_returns)
     return ((expected_annualized_return - 0.05) / calculate_annualized_volatility(prices))
 
