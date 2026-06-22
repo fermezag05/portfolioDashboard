@@ -1,4 +1,4 @@
-# portfolioDashboard
+# Portfolio Dashboard Project
 
 Start backend
 cd backend
