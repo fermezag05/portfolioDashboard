@@ -15,7 +15,8 @@ def get_price_history(ticker, period):
         prices = []
 
         for dates, price in closing_prices.items():
-            prices.append({"date": str(dates.date()), "price": price})
+            prices.append({"date": str(dates.date()),
+                          "price": round(price, 2)})
 
         return prices
 

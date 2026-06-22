@@ -1,5 +1,13 @@
 //import { RechartsDevtools } from "@recharts/devtools";
-import { Legend, Line, LineChart, XAxis, YAxis, Tooltip } from "recharts";
+import {
+  Legend,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 interface Props {
   prices: { date: string; price: number }[];
@@ -13,14 +21,34 @@ export default function PriceChart({ prices }: Props) {
       responsive
       data={prices}
     >
-      <XAxis dataKey="date" tick={{ fontSize: 10 }} />
+      <CartesianGrid stroke="#aaa" strokeDasharray="2 2" />
+      <XAxis
+        dataKey="date"
+        tick={{ fontSize: 9 }} /*label={{ value: "date" }}*/
+      />
       <YAxis
         dataKey="price"
-        label={{ value: "price", position: "insideLeft", angle: -90 }}
-        tick={{ fontSize: 10 }}
+        label={{ value: "price (USD)", position: "insideLeft", angle: -90 }}
+        tick={{ fontSize: 12 }}
+        domain={["auto", "auto"]}
       />
-      <Line dataKey="price" />
-      <Tooltip />
+      <Line
+        type="monotone"
+        dataKey="price"
+        stroke="green"
+        dot={{
+          fill: "var(--color-surface-base)",
+        }}
+        activeDot={{
+          stroke: "dark green",
+        }}
+        strokeWidth={2}
+      />
+      <Tooltip
+        labelFormatter={(label) => `Date: ${label}`}
+        contentStyle={{ backgroundColor: "#1a1a1a", color: "white" }}
+        labelStyle={{ color: "white" }}
+      />
     </LineChart>
   );
 }
